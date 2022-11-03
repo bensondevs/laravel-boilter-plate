@@ -34,7 +34,7 @@
         },
         "laravel": {
             "providers": [
-                "Bensondevs\\LaravelBoilerPlate\\LaravelBoilterPlateServiceProvider"
+                "Bensondevs\\LaravelBoilerPlate\\LaravelBoilerPlateServiceProvider"
             ]
         }
     }
