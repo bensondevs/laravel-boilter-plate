@@ -17,23 +17,25 @@
     "require": {
         "php": "^8.0.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5.10"
+    },
     "autoload-dev": {
         "files": [
             "helpers.php"
         ],
         "psr-4": {
-            "Tests\\": "tests/"
+            "Bensondevs\\LaravelBoilerPlate\\Tests\\": "src/Tests"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.x-dev"
+            "dev-master": "1.0"
         },
         "laravel": {
             "providers": [
                 "Bensondevs\\LaravelBoilerPlate\\LaravelBoilterPlateServiceProvider"
             ]
         }
-    },
-    "prefer-stable": true
+    }
 }
