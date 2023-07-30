@@ -1,25 +1,25 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerPlate\Commands;
+namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
 
-use Bensondevs\LaravelBoilerPlate\Services\ClassGeneratorService;
+use Bensondevs\LaravelBoilerplate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 
-class MakeRepository extends Command
+class MakeTrait extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:repository {repository : Name of repository}';
+    protected $signature = 'make:trait {trait : Name of trait}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create repository class';
+    protected $description = 'Command to create trait.';
 
     /**
      * Create a new command instance.
@@ -34,15 +34,19 @@ class MakeRepository extends Command
     /**
      * Execute the console command.
      *
-     * @return void
+     * @return mixed
      */
-    public function handle(): void
+    public function handle()
     {
-        $repositoryName = $this->argument('repository');
+        if (!file_exists(app_path('Traits'))) {
+            mkdir(app_path('Traits'), 0777, true);
+        }
+        
+        $traitName = $this->argument('trait');
 
         $generatorService = (new ClassGeneratorService)
-            ->setType('repository')
-            ->setFileName($repositoryName);
+            ->setType('trait')
+            ->setFileName($traitName);
 
         if ($exists = file_exists($generatorService->getFullDesignatedPath())) {
             $question = 'The class is already exist. Are you sure want to override the existing class?';

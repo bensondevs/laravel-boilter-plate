@@ -1,64 +1,53 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerPlate;
+namespace RafCom\GeneralBoilerplate;
 
-use Bensondevs\LaravelBoilerPlate\Commands\MakeContract;
-use Bensondevs\LaravelBoilerPlate\Commands\MakeEnum;
-use Bensondevs\LaravelBoilerPlate\Commands\MakeHelper;
-use Bensondevs\LaravelBoilerPlate\Commands\MakeIntegrationTest;
-use Bensondevs\LaravelBoilerPlate\Commands\MakeRepository;
-use Bensondevs\LaravelBoilerPlate\Commands\MakeService;
-use Bensondevs\LaravelBoilerPlate\Commands\MakeTrait;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelBoilerPlateServiceProvider extends ServiceProvider implements DeferrableProvider
+class LaravelBoilerPlateServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        $this->registerCommands();
+        $this->registerHelpers();
+        $this->registerConsoleCommands();
     }
 
     /**
-     * Register the console commands for the package.
+     * Register the package helpers.
      *
      * @return void
      */
-    protected function registerCommands()
+    private function registerHelpers(): void
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                MakeContract::class,
-                MakeEnum::class,
-                MakeHelper::class,
-                MakeIntegrationTest::class,
-                MakeRepository::class,
-                MakeService::class,
-                MakeTrait::class,
-            ]);
+        foreach (scandir('../Helpers') as $helperFile) {
+            if (in_array($helperFile, ['.', '..'])) {
+                continue;
+            }
+
+            require '../Helpers/'. $helperFile;
         }
     }
 
     /**
-     * Get the services provided by the provider.
+     * Register application console commands.
      *
-     * @return array
+     * @return void
      */
-    public function provides()
+    private function registerConsoleCommands(): void
     {
-        return [
-            MakeContract::class,
-            MakeEnum::class,
-            MakeHelper::class,
-            MakeIntegrationTest::class,
-            MakeRepository::class,
-            MakeService::class,
-            MakeTrait::class,
-        ];
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \RafCom\Commands\ClassGenerators\MakeEnumClass::class,
+                \RafCom\Commands\ClassGenerators\MakeHelper::class,
+                \RafCom\Commands\ClassGenerators\MakeIntegrationTest::class,
+                \RafCom\Commands\ClassGenerators\MakeRepositoryClass::class,
+                \RafCom\Commands\ClassGenerators\MakeServiceClass::class,
+            ]);
+        }
     }
 }

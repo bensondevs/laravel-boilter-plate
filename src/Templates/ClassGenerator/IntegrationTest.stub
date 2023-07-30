@@ -1,0 +1,11 @@
+<?php
+
+namespace Tests\Integration{{extendedPath}};
+
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithFaker;
+
+class {{testName}} extends TestCase
+{
+    use WithFaker;
+}

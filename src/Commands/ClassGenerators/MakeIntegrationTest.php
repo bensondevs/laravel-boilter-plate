@@ -1,54 +1,48 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerPlate\Commands;
+namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
 
-use Bensondevs\LaravelBoilerPlate\Services\ClassGeneratorService;
+use Bensondevs\LaravelBoilerplate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 
-class MakeTrait extends Command
+class MakeIntegrationTest extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:trait {trait : Name of trait}';
+    protected $signature = 'make:integration-test {test : Name of integration test class}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command to create trait.';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Command to create integration test class.';
 
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-        $traitName = $this->argument('trait');
+        if (!file_exists(base_path('tests/Integration'))) {
+            
+        }
+        
+        $testName = $this->argument('test');
 
         $generatorService = (new ClassGeneratorService)
-            ->setType('trait')
-            ->setFileName($traitName);
+            ->setType('integration_test')
+            ->setFileName($testName);
 
         if ($exists = file_exists($generatorService->getFullDesignatedPath())) {
             $question = 'The class is already exist. Are you sure want to override the existing class?';
             if (! $this->confirm($question)) {
                 $this->error('Class overriding process aborted.');
-                return;
+                return 0;
             }
         }
 
@@ -57,5 +51,7 @@ class MakeTrait extends Command
         $generatorService->generate() ?
             $this->info($className . ' has been ' . $type . ' successfully!') :
             $this->error('Failed to generate the class! Please check permission');
+
+        return 0;
     }
 }

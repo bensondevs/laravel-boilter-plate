@@ -1,8 +1,8 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerPlate\Commands;
+namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
 
-use Bensondevs\LaravelBoilerPlate\Services\ClassGeneratorService;
+use Bensondevs\LaravelBoilerplate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -59,6 +59,10 @@ class MakeHelper extends Command
      */
     public function handle(): int
     {
+        if (!file_exists(app_path('Helpers'))) {
+            mkdir(app_path('Helpers'), 0777, true);
+        }
+        
         $helperName = $this->argument('helper');
 
         $generatorService = (new ClassGeneratorService)

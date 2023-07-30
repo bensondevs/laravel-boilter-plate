@@ -1,44 +1,56 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerPlate\Commands;
+namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
 
-use Bensondevs\LaravelBoilerPlate\Services\ClassGeneratorService;
+use Bensondevs\LaravelBoilerplate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 
-class MakeIntegrationTest extends Command
+class MakeService extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:integration-test {test : Name of integration test class}';
+    protected $signature = 'make:service {service : Name of service}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command to create integration test class.';
+    protected $description = 'Create service class';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return void
      */
-    public function handle(): int
+    public function handle(): void
     {
-        $testName = $this->argument('test');
+        if (!file_exists(app_path('Services'))) {
+            mkdir(app_path('Services'), 0777, true);
+        }
+        
+        $serviceName = $this->argument('service');
 
-        $generatorService = (new ClassGeneratorService)
-            ->setType('integration_test')
-            ->setFileName($testName);
+        $generatorService = (new ClassGeneratorService)->setFileName($serviceName);
 
         if ($exists = file_exists($generatorService->getFullDesignatedPath())) {
             $question = 'The class is already exist. Are you sure want to override the existing class?';
             if (! $this->confirm($question)) {
                 $this->error('Class overriding process aborted.');
-                return 0;
+                return;
             }
         }
 
@@ -47,7 +59,5 @@ class MakeIntegrationTest extends Command
         $generatorService->generate() ?
             $this->info($className . ' has been ' . $type . ' successfully!') :
             $this->error('Failed to generate the class! Please check permission');
-
-        return 0;
     }
 }

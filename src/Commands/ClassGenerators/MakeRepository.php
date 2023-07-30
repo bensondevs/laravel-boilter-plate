@@ -1,25 +1,25 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerPlate\Commands;
+namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
 
-use Bensondevs\LaravelBoilerPlate\Services\ClassGeneratorService;
+use Bensondevs\LaravelBoilerplate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 
-class MakeEnum extends Command
+class MakeRepository extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:enum {enum : Name of enum}';
+    protected $signature = 'make:repository {repository : Name of repository}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create enum class';
+    protected $description = 'Create repository class';
 
     /**
      * Create a new command instance.
@@ -34,15 +34,19 @@ class MakeEnum extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $enumName = $this->argument('enum');
+        if (!file_exists(app_path('Repositories'))) {
+            mkdir(app_path('Repositories'), 0777, true);
+        }
+        
+        $repositoryName = $this->argument('repository');
 
         $generatorService = (new ClassGeneratorService)
-            ->setType('enum')
-            ->setFileName($enumName);
+            ->setType('repository')
+            ->setFileName($repositoryName);
 
         if ($exists = file_exists($generatorService->getFullDesignatedPath())) {
             $question = 'The class is already exist. Are you sure want to override the existing class?';
