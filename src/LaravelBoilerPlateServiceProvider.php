@@ -1,6 +1,6 @@
 <?php
 
-namespace RafCom\GeneralBoilerplate;
+namespace Bensondevs\LaravelBoilerPlate;
 
 use Illuminate\Support\ServiceProvider;
 

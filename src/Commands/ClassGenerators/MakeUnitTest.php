@@ -1,6 +1,6 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
+namespace Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;

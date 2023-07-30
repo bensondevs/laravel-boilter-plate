@@ -1,8 +1,8 @@
 <?php
 
-namespace Bensondevs\LaravelBoilerplate\Commands\ClassGenerators;
+namespace Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators;
 
-use Bensondevs\LaravelBoilerplate\Services\Utility\ClassGeneratorService;
+use Bensondevs\LaravelBoilerPlate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 
 class MakeIntegrationTest extends Command
