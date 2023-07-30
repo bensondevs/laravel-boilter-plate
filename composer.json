@@ -15,14 +15,21 @@
         }
     ],
     "require": {
-        "php": "^8.0.2"
+        "php": "^8.0.2",
+        "laravel/framework": "^8.10"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5.10"
     },
     "autoload-dev": {
         "files": [
-            "helpers.php"
+            "./src/Helpers/Helpers.php",
+            "./src/Helpers/UrlHelpers.php",
+            "./src/Helpers/HtmlHelpers.php",
+            "./src/Helpers/FileHelpers.php",
+            "./src/Helpers/StringHelpers.php",
+            "./src/Helpers/DateTimeHelpers.php",
+            "./src/Helpers/EncryptionHelpers.php"
         ],
         "psr-4": {
             "Bensondevs\\LaravelBoilerPlate\\Tests\\": "src/Tests"

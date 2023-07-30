@@ -42,11 +42,11 @@ class LaravelBoilerPlateServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \RafCom\Commands\ClassGenerators\MakeEnumClass::class,
-                \RafCom\Commands\ClassGenerators\MakeHelper::class,
-                \RafCom\Commands\ClassGenerators\MakeIntegrationTest::class,
-                \RafCom\Commands\ClassGenerators\MakeRepositoryClass::class,
-                \RafCom\Commands\ClassGenerators\MakeServiceClass::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeEnumClass::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeHelper::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeIntegrationTest::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeRepositoryClass::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeServiceClass::class,
             ]);
         }
     }

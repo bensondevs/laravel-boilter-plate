@@ -3,7 +3,7 @@
 namespace Bensondevs\LaravelBoilerPlate\Tests\Commands;
 
 /**
- * @see \Bensondevs\LaravelBoilerPlate\Commands\MakeService
+ * @see \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeService
  *      To the tested command class.
  */
 class MakeServiceTest extends \PHPUnit\Framework\TestCase

@@ -1,6 +1,6 @@
 <?php
 
-namespace RafCom\Services\Utility;
+namespace Bensondevs\LaravelBoilerPlate\Services\Utility;
 
 class ClassGeneratorService
 {
