@@ -24,7 +24,7 @@ class LaravelBoilerPlateServiceProvider extends ServiceProvider
      */
     private function registerHelpers(): void
     {
-        foreach (scandir('../Helpers') as $helperFile) {
+        foreach (scandir('Helpers') as $helperFile) {
             if (in_array($helperFile, ['.', '..'])) {
                 continue;
             }
