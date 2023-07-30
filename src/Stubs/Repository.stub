@@ -2,7 +2,7 @@
 
 namespace App\Repositories{{extendedPath}};
 
-use App\Repositories\BaseRepository;
+use Bensondevs\LaravelBoilerPlate\Repositories\BaseRepository;
 
 class {{repositoryName}} extends BaseRepository
 {

@@ -5,7 +5,7 @@ namespace Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators;
 use Bensondevs\LaravelBoilerPlate\Services\Utility\ClassGeneratorService;
 use Illuminate\Console\Command;
 
-class MakeEnumClass extends Command
+class MakeEnum extends Command
 {
     /**
      * The name and signature of the console command.
@@ -19,7 +19,7 @@ class MakeEnumClass extends Command
      *
      * @var string
      */
-    protected $description = 'Create enum class';
+    protected $description = 'Create an enum class';
 
     /**
      * Create a new command instance.

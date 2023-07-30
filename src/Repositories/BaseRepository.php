@@ -1,6 +1,6 @@
 <?php
 
-namespace RafCom\Repositories;
+namespace Bensondevs\LaravelBoilerPlate\Repositories;
 
 use Illuminate\Database\Eloquent\{Builder, Collection, Model};
 use Illuminate\Pagination\LengthAwarePaginator;

@@ -71,16 +71,18 @@ class ClassGeneratorService
             'scope' => app_path('Scopes'),
             'enum' => app_path('Enums'),
             'integration_test' => test_path('Integration'),
+            'helper' => app_path('Helpers'),
         ];
 
         $this->stubPaths = [
-            'service' => stub_path('Service.stub'),
-            'repository' => stub_path('Repository.stub'),
-            'contract' => stub_path('Contract.stub'),
-            'trait' => stub_path('Trait.stub'),
-            'scope' => stub_path('Scope.stub'),
-            'enum' => stub_path('Enum.stub'),
-            'integration_test' => stub_path('IntegrationTest.stub'),
+            'service' => package_stub_path('Service.stub'),
+            'repository' => package_stub_path('Repository.stub'),
+            'contract' => package_stub_path('Contract.stub'),
+            'trait' => package_stub_path('Trait.stub'),
+            'scope' => package_stub_path('Scope.stub'),
+            'enum' => package_stub_path('Enum.stub'),
+            'integration_test' => package_stub_path('IntegrationTest.stub'),
+            'helper' => package_stub_path('Helper.stub'),
         ];
 
         $this->stubCompacts = [
@@ -155,7 +157,12 @@ class ClassGeneratorService
     {
         $type = $this->getType();
 
-        return $this->basePaths[$type];
+        $instancePath =  $this->basePaths[$type];
+        if (!file_exists($instancePath)) {
+            mkdir($instancePath);
+        }
+
+        return $instancePath;
     }
 
     /**

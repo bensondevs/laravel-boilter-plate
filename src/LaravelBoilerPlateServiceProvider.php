@@ -24,12 +24,12 @@ class LaravelBoilerPlateServiceProvider extends ServiceProvider
      */
     private function registerHelpers(): void
     {
-        foreach (scandir('Helpers') as $helperFile) {
+        foreach (scandir(__DIR__ . '/Helpers') as $helperFile) {
             if (in_array($helperFile, ['.', '..'])) {
                 continue;
             }
 
-            require '../Helpers/'. $helperFile;
+            require __DIR__ . '/Helpers/' . $helperFile;
         }
     }
 
@@ -42,11 +42,11 @@ class LaravelBoilerPlateServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeEnumClass::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeEnum::class,
                 \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeHelper::class,
                 \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeIntegrationTest::class,
-                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeRepositoryClass::class,
-                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeServiceClass::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeRepository::class,
+                \Bensondevs\LaravelBoilerPlate\Commands\ClassGenerators\MakeService::class,
             ]);
         }
     }

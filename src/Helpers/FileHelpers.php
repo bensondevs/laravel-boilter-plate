@@ -350,8 +350,8 @@ if (!function_exists('package_stub_path')) {
      */
     function package_stub_path(string $stubName): string
     {
-        return base_path(concat_paths([
-            '../Templates/ClassGenerator',
+        return (concat_paths([
+            __DIR__ . '/../Templates/ClassGenerator',
             $stubName,
         ]));
     }
